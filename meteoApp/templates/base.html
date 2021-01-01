@@ -1,0 +1,56 @@
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>Meteo Analysis</title>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap&subset=latin-ext" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/baseStyle.css' %}" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+
+        <title>Mathedemo</title>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+        <script type="text/javascript"
+          src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+
+    </head>
+    <body>
+        <div id="page" class="hfeed site">
+            <header>
+                <div class="header">
+                    <div class="main-head-wrap inner-wrap clearfix">
+                        <div id="header-logo-image">
+                        </div>
+                        <div id="header-text" class="">
+                           <h1 style="text-align:center;">
+                                <a href="/" title="Meteo Analysis" rel="home">Meteo Analysis</a>
+                            </h1>
+                        </div>
+                            <form method="POST">
+                            {% csrf_token %}
+                                <div>
+                                    {{ form.name }}
+                                    <button type="submit" class="button is-info">
+                                        Add City
+                                    </button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </header>
+            <div class="main">
+				<div class="main__content">
+					{% block content %}
+					{% endblock %}
+				</div>
+            </div>
+            <footer id="colophon">
+            </footer>
+        </div>
+    </body>
+</html>

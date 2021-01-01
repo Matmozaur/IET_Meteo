@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<form method="post" style="text-align: center;" action="{% url 'basic_plot' %}">
+    {% csrf_token %}
+    <div class="wrapper">
+      <div class="t11">
+          <select name="city" id="city" class="select">
+          {% for city in cities %}
+            <option value="{{ city.name }}" {% if selected_city == city.name %} selected {%endif%}>{{ city.name }}</option>
+        {% endfor %}
+              </select>
+      </div>
+      <div class="t12">
+          <select name="measurement" id="measurement" class="select">
+              <option value="temperature" {% if measurement == "temperature" %} selected {%endif%}>temperature</option>
+              <option value="rain" {% if measurement == "rain" %} selected {%endif%}>rain</option>
+              <option value="wind" {% if measurement == "wind" %} selected {%endif%}>wind</option>
+              <option value="pressure" {% if measurement == "pressure" %} selected {%endif%} >pressure</option>
+              </select>
+      </div>
+        <div class="t13">
+           <select name="time" id="time" class="select">
+              <option value="day" {% if time == "day" %} selected {%endif%}>day</option>
+              <option value="week" {% if time == "week" %} selected {%endif%}>week</option>
+              <option value="month" {% if time == "month" %} selected {%endif%}>month</option>
+           </select>
+      </div>
+       <div class="t14">
+          <input class="button" type="submit" value="Submit"/>
+      </div>
+
+
+   <div style="text-align: center;" class="t21">
+      <img style="width:90%;" src="/static/images/fig.png"/>
+   </div>
+
+    <div style="margin: 24px 24px 0 auto; text-align: right" class="t31">
+        <h3>Trend</h3>
+    </div>
+    <div class="t32">
+        <form></form>
+       <form method="post" action="{% url 'add_trend' %}">
+          {% csrf_token %}
+          <input class="button" type="submit" value="show"/>
+          </form>
+  </div>
+   <div class="t33">
+       <form action="{% url 'basic_plot' %}">
+      <input class="button" type="submit" value="HIDE"/>
+       </form>
+  </div>
+
+   <div style="margin: 24px 24px 0 auto; text-align: right" class="t41">
+        <h3>Statistics</h3>
+    </div>
+
+  <div class="t42">
+      <form method="post" action="{% url 'add_stats' %}">
+          {% csrf_token %}
+      <input class="button" type="submit" value="show"/>
+      </form>
+  </div>
+    <div class="t43">
+        <form action="{% url 'basic_plot' %}">
+        <input class="button" type="submit" value="HIDE"/>
+        </form>
+  </div>
+
+ <div style="text-align: center;" class="t51">
+      <textarea style="resize: none; text-align: center;" rows="4" cols="60" disabled="true">{{stats}}</textarea>
+  </div>
+</div>
+</form>
+
+{% endblock %}
