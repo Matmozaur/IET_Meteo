@@ -1,7 +1,6 @@
 from __future__ import absolute_import, unicode_literals
 
 from celery import Celery
-from datetime import datetime, timedelta
 
 import os
 
@@ -12,7 +11,7 @@ app = Celery('meteoApp')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 app.conf.beat_schedule = {
-    'add-every-30-seconds': {
+    'add-every-hour': {
         'task': 'meteoApp.tasks.download_data',
         'schedule': 3600.0,
         'args': ()
