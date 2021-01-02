@@ -31,7 +31,7 @@
                                 <a href="/" title="Meteo Analysis" rel="home">Meteo Analysis</a>
                             </h1>
                         </div>
-                            <form method="POST">
+                            <form method="POST", action="">
                             {% csrf_token %}
                                 <div>
                                     {{ form.name }}
